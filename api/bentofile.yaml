@@ -1,0 +1,10 @@
+# Configuration pour construire le "Bento" (package de l'API) : utile à l'étape suivante
+service: "service:EnergieBatiments"
+labels:
+  projet: seattle-energie
+include:
+  - "service.py"
+  - "schemas.py"
+  - "preprocessing.py"
+python:
+  requirements_txt: "./requirements.txt"

@@ -1,0 +1,7 @@
+# Dépendances de l'API (étape 1 - mise en production)
+bentoml>=1.4,<1.5
+scikit-learn==1.9.1
+pandas>=2.2
+numpy>=1.26
+pydantic>=2.7
+requests>=2.31
