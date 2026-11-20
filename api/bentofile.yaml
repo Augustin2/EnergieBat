@@ -1,10 +1,32 @@
-# Configuration pour construire le "Bento" (package de l'API) : utile à l'étape suivante
+# bentofile.yaml : tout ce qu'il faut pour reproduire le conteneur de l'API.
+# Construction :  bentoml build
+# Image Docker :  bentoml containerize energie_batiments:latest
+
+# 1) Le service à lancer dans le conteneur (fichier service.py, classe EnergieBatiments)
 service: "service:EnergieBatiments"
+name: energie_batiments
 labels:
   projet: seattle-energie
+  etape: deploiement
+
+# 2) Le code source nécessaire, et seulement lui (pour garder une image légère).
+#    On n'inclut PAS : le CSV, le notebook, train_and_save.py, test_api.py, les captures...
 include:
   - "service.py"
   - "schemas.py"
   - "preprocessing.py"
+exclude:
+  - "__pycache__/"
+
+# 3) Le modèle, pris dans le model store de BentoML (créé par train_and_save.py)
+models:
+  - "energie_batiments_seattle:latest"
+
+# 4) Les dépendances de production, avec les versions exactes (voir figer_versions.py)
 python:
-  requirements_txt: "./requirements.txt"
+  requirements_txt: "./requirements-prod.txt"
+  lock_packages: false
+
+# 5) Image de base : Debian légère
+docker:
+  distro: debian

@@ -1,0 +1,6 @@
+# Généré par figer_versions.py - dépendances de production (image Docker)
+bentoml==1.4.40
+scikit-learn==1.9.1
+pandas==3.1.0
+numpy==2.5.4
+pydantic==2.14.3

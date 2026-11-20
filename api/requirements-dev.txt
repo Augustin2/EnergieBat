@@ -1,0 +1,13 @@
+# Dépendances de DÉVELOPPEMENT : API + entraînement, notebook et tests.
+# Seules les dépendances de production (requirements-prod.txt, généré par
+# figer_versions.py) sont installées dans l'image Docker.
+bentoml>=1.4,<1.5
+scikit-learn
+pandas
+numpy
+pydantic>=2.7
+requests
+jupyter
+ipykernel
+matplotlib
+seaborn

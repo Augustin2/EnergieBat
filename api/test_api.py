@@ -5,10 +5,17 @@ Tests de l'API en local, avec des requêtes HTTP.
        bentoml serve service:EnergieBatiments
 2) Lancer les tests dans un second terminal :
        python test_api.py
+
+Pour tester l'API déployée sur le Cloud, on donne son adresse en argument :
+       python test_api.py https://energie-batiments-xxxxx.europe-west1.run.app
 """
+import sys
+
 import requests
 
-URL = "http://localhost:3000"
+# Adresse de l'API : localhost par défaut, ou celle donnée en argument
+URL = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "http://localhost:3000"
+print("Tests sur :", URL, "\n")
 
 # Un bâtiment valide (hôtel du centre-ville, consommation réelle mesurée : 7 226 362 kBtu)
 BATIMENT_OK = {
@@ -36,7 +43,7 @@ def modifier(**changements):
 
 
 def appeler(endpoint, donnees):
-    return requests.post(f"{URL}/{endpoint}", json=donnees, timeout=10)
+    return requests.post(f"{URL}/{endpoint}", json=donnees, timeout=60)
 
 
 nb_ok = 0
