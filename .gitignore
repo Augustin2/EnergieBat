@@ -1,4 +1,8 @@
 node_modules/
 .env
 __pycache__/
-*.log
+*.log.venv/
+.ipynb_checkpoints/
+old/
+old/
+requirements-dev
